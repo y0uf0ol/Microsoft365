@@ -1,0 +1,3 @@
+AADSignInEventsBeta
+| where ClientAppUsed contains "Discover"
+| project Timestamp,Application,AccountDisplayName,ClientAppUsed,IPAddress 
