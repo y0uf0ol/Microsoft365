@@ -1,2 +1,0 @@
-DeviceNetworkEvents
-| where InitiatingProcessCommandLine contains "jndi" and ActionType contains "outbound"
