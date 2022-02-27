@@ -1,0 +1,3 @@
+AzureActivity
+| where Authorization contains "Microsoft.Authorization/roleAssignments" and ActivityStatus has "Started"
+| project Caller,ActivityStatus,TimeGenerated,CallerIpAddress,Properties
