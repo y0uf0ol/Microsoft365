@@ -1,0 +1,17 @@
+
+//Adv. Hunting Security Center
+//Detect usage of of encoded powershell commands (BASE64)
+DeviceEvents
+| where Timestamp > ago(1d)
+| where InitiatingProcessFileName has "powershell"
+| where InitiatingProcessCommandLine has "-e" or InitiatingProcessCommandLine has "-encodedcommand"
+| where InitiatingProcessCommandLine matches regex "\\b(?:[A-Za-z\\d+/]{4})*(?:[A-Za-z\\d+/]{3}=|[A-Za-z\\d+/]{2}==)?\\b"
+//| where AdditionalFields != ""
+| project
+    Timestamp,
+    InitiatingProcessAccountName,
+    DeviceName,
+    InitiatingProcessCommandLine,
+    InitiatingProcessFolderPath,
+    AdditionalFields
+| sort by Timestamp desc 
